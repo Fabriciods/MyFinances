@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyFinances</string>
+    <string name="my_finances_header_hello">Olá, \n%1$s</string>
+    <string name="my_finances_balance_actual">Saldo atual</string>
+    <string name="my_finances_content_description_balance_display_on">olho aberto</string>
+    <string name="my_finances_content_description_balance_display_off">olho fechado</string>
+    <string name="my_finances_content_description_menu">menu de três barras</string>
+</resources>
