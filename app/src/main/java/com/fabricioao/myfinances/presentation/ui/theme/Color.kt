@@ -2,12 +2,11 @@ package com.fabricioao.myfinances.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val White = Color(0xfffbfcff)
+val BlueMedium = Color(0xff40bcfc)
+val BlueHigh = Color(0xff4162ff)
+val BlueLight = Color(0xff5bcbef)
+val Purple = Color(0xff5581ef)
+val WhiteBox = Color(0xfff2f4f4)
+val Black = Color(0xFF090909)
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-val White = Color(0xFFFEFDFD)
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xff606260)
-val Pink40 = Color(0xFF7D5260)
-val black = Color(0xFF2C2A2A)

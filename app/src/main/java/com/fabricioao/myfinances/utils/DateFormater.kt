@@ -1,3 +1,10 @@
 package com.fabricioao.myfinances.utils
 
-//TODO criar função para formatar data para padrão br DD/MM/AAAA
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
+fun Date.toBrazilianFormat(): String{
+    val format = SimpleDateFormat("dd/MM/yyyy", Locale("pt","BR"))
+    return format.format(this)
+}

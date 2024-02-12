@@ -1,7 +1,5 @@
 package com.fabricioao.myfinances.presentation.home.components
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,16 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.fabricioao.myfinances.domain.models.Recurrence
 import com.fabricioao.myfinances.domain.models.RecurrenceType
-import com.fabricioao.myfinances.presentation.ui.theme.MyFinancesTheme
-import com.fabricioao.myfinances.presentation.ui.theme.PurpleGrey40
-import com.fabricioao.myfinances.presentation.ui.theme.White
-import java.time.Instant
-import java.util.Calendar
-import java.util.Date
+import com.fabricioao.myfinances.presentation.home.components.Constants.DEFAULT_BALANCE
+import com.fabricioao.myfinances.presentation.ui.theme.Black
+import com.fabricioao.myfinances.presentation.ui.theme.WhiteBox
+import com.fabricioao.myfinances.utils.toBrazilianFormat
+import com.fabricioao.myfinances.utils.toCurrency
 
 @Composable
 fun RecurrenceDisplay(
@@ -32,7 +28,7 @@ fun RecurrenceDisplay(
 ) {
     Surface(
         modifier = modifier.wrapContentSize(),
-        color = PurpleGrey40
+        color = WhiteBox
     ) {
         Row(
             modifier = Modifier
@@ -44,20 +40,24 @@ fun RecurrenceDisplay(
         ) {
             Text(
                 text = recurrence.name,
-                color = White
+                color = Black
             )
             Column(
-                horizontalAlignment = Alignment.End
+                horizontalAlignment = Alignment.End,
+                modifier = Modifier.padding(end = 4.dp)
             ) {
                 Text(
-                    text = recurrence.dueDate.toString(),
-                    color = White
+                    text = recurrence.dueDate.toBrazilianFormat(),
+                    color = Black
                 )
                 Text(
-                    text = recurrence.value.toString(),
+                    text = addSymbolToCurrency(
+                        recurrence.value ?: DEFAULT_BALANCE,
+                        recurrence.type
+                    ),
                     color = if (recurrence.type == RecurrenceType.Expense)
                         Color.Red
-                        else
+                    else
                         Color.Green
                 )
             }
@@ -66,19 +66,14 @@ fun RecurrenceDisplay(
     }
 }
 
-@Composable
-@Preview
-fun PreviewTes() {
-    MyFinancesTheme {
-        RecurrenceDisplay(
-            recurrence = Recurrence(
-                name = "Força",
-                description = null,
-                value = 34.4,
-                dueDate = Calendar.getInstance().time,
-                isRecurrent = true,
-                type = RecurrenceType.Active
-            )
-        )
-    }
+private fun addSymbolToCurrency(value: Double, type: RecurrenceType): String {
+    return if (type == RecurrenceType.Active)
+        "+ ${value.toCurrency()}"
+    else
+        "- ${value.toCurrency()}"
 }
+
+private object Constants {
+    const val DEFAULT_BALANCE = 0.0
+}
+

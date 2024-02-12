@@ -1,3 +1,10 @@
 package com.fabricioao.myfinances.utils
 
-//TODO criar função para formatar string em dinheiro
+import java.text.NumberFormat
+import java.util.Locale
+
+
+fun Double.toCurrency():String{
+    val format =  NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
+    return format.format(this)
+}

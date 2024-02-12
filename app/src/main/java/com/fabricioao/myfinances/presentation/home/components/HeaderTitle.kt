@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.Menu
+import androidx.compose.material.icons.sharp.Notifications
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -18,8 +18,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.fabricioao.myfinances.R
+import com.fabricioao.myfinances.presentation.ui.theme.BlueLight
 import com.fabricioao.myfinances.presentation.ui.theme.MyFinancesTheme
-import com.fabricioao.myfinances.presentation.ui.theme.PurpleGrey40
 import com.fabricioao.myfinances.presentation.ui.theme.White
 
 @Composable
@@ -30,7 +30,7 @@ fun HeaderTitle(
 ) {
     Surface(
         modifier = modifier.wrapContentSize(),
-        color = PurpleGrey40
+        color = BlueLight
     ) {
         Row(
             modifier = Modifier
@@ -44,11 +44,18 @@ fun HeaderTitle(
                 color = White
             )
             IconButton(onClick = onClickMenu) {
-                Image(imageVector = Icons.Sharp.Menu,
+                Image(imageVector = Icons.Sharp.Notifications,
                     contentDescription = stringResource(R.string.my_finances_content_description_menu),
                     colorFilter = ColorFilter.tint(White))
             }
         }
 
+    }
+}
+@Composable
+@Preview
+fun HeaderPreview(){
+    MyFinancesTheme {
+        HeaderTitle(userName = "Fabricio", onClickMenu = { /*TODO*/ })
     }
 }
